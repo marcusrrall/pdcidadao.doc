@@ -13,22 +13,27 @@ const route = Router();
 
 app.use(route);
 
-const options = { customCssUrl: `/public/swagger-ui-custom.css` };
+const options = { customCssUrl: `./public/swagger-ui-custom.css` };
 
 const swaggerDocs = JSON.parse(fs.readFileSync(`${__dirname}/swagger.json`));
-// app.use("/", swaggerUI.serve, swaggerUI.setup(swaggerDocs, options));
-route.use(
+app.use(
   "/",
-  function (req, res, next) {
-    swaggerDocs.host = req.get("host");
-    req.swaggerDoc = swaggerDocs;
-    next();
-  },
+  express.static("node_modules/swagger-ui-dist/", { index: false }),
   swaggerUI.serve,
   swaggerUI.setup(swaggerDocs, options)
 );
+// route.use(
+//   "/",
+//   function (req, res, next) {
+//     swaggerDocs.host = req.get("host");
+//     req.swaggerDoc = swaggerDocs;
+//     next();
+//   },
+//   swaggerUI.serve,
+//   swaggerUI.setup(swaggerDocs, options)
+// );
 
-app.use("/public/css", express.static("public/css"));
+app.use("/public", express.static("public"));
 
 app.listen(4000, () => {
   console.log("Server running in" + 4000);
