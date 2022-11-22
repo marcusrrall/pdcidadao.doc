@@ -4,16 +4,15 @@ import swaggerUI from "swagger-ui-express";
 import fs from "fs";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const swaggerDocs = JSON.parse(fs.readFileSync(`${__dirname}/swagger.json`));
-
 const app = express();
+const swaggerDocs = JSON.parse(fs.readFileSync(`${__dirname}/swagger.json`));
+app.use("/api", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 const route = Router();
-
-app.use("/api", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 route.get("/", (request, response) => {
   return response.json({
