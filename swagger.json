@@ -11,5 +11,51 @@
       "description": "API de test"
     }
   ],
-  "basePath": "/"
+  "basePath": "/",
+  "paths": {
+    "/rest/paramController/getNomeEmpresa": {
+      "get": {
+        "summary": "Nome da empresa",
+        "description": "Retorna o nome da empresa",
+        "tags": ["Core"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "scheme": {}
+            }
+          }
+        }
+      }
+    },
+    "/rest/assuntoController/pesquisarMobile": {
+      "post": {
+        "summary": "Carrega os dados Esic",
+        "description": "",
+        "tags": ["Core"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PesquisarMobile"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PesquisarMobile": {
+        "type": "object",
+        "properties": {
+          "tabela": { "type": "object" },
+          "solicita_s_n": { "type": "string" },
+          "limitarPesquisa": { "type": "boolean" },
+          "isPesquisaMobile": { "type": "boolean" },
+          "isApenasAtivo": { "type": "boolean" }
+        }
+      }
+    }
+  }
 }
