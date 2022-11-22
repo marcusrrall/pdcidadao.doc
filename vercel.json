@@ -2,9 +2,7 @@
   "name": "pdcidadaodoc",
   "version": 2,
   "public": true,
-  "build": {
-    "use": "@vercel/node"
-  },
+  "build": [{ "src": "*.js", "use": "@vercel/node" }],
   "routes": [
     {
       "src": "/(.*)",
