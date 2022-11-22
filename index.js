@@ -11,20 +11,26 @@ const __dirname = dirname(__filename);
 const app = express();
 const route = Router();
 
-var options = {
-  // customCssUrl: `./swagger-ui-custom.css`,
-};
+// var options = {
+//   // customCssUrl: `./swagger-ui-custom.css`,
+// };
+
+const options = { customCssUrl: `/public/swagger-ui-custom.css` };
 
 const swaggerDocs = JSON.parse(fs.readFileSync(`${__dirname}/swagger.json`));
-app.use("/api", swaggerUI.serve, swaggerUI.setup(swaggerDocs, options));
+app.use("/", swaggerUI.serve, swaggerUI.setup(swaggerDocs, options));
+route.use(
+  "/api-docs-ui",
+  function (req, res, next) {
+    swaggerDocument.host = req.get("host");
+    req.swaggerDoc = swaggerDocs;
+    next();
+  },
+  swaggerUI.serve,
+  swaggerUI.setup(swaggerDocs, options)
+);
 
-route.get("/", (request, response) => {
-  return response.json({
-    success: "true",
-    message: "Sucesso!",
-  });
-});
-
+app.use("/public/css", express.static("public/css"));
 app.use(route);
 
 app.listen(4000, () => {
