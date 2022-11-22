@@ -9,10 +9,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
-const swaggerDocs = JSON.parse(fs.readFileSync(`${__dirname}/swagger.json`));
-app.use("/api", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
-
 const route = Router();
+
+const swaggerDocs = JSON.parse(fs.readFileSync(`${__dirname}/swagger.json`));
+app.use("/api", swaggerUI.serve);
+route.get("/api", swaggerUI.setup(swaggerDocs));
 
 route.get("/", (request, response) => {
   return response.json({
