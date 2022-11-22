@@ -1,9 +1,15 @@
 import express from "express";
 import { Router } from "express";
+import swaggerUI from "swagger-ui-express";
+import fs from "fs";
+
+const swaggerDocs = JSON.parse(fs.readFileSync(`swagger.json`));
 
 const app = express();
 
 const route = Router();
+
+app.use("/api", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 route.get("/", (request, response) => {
   return response.json({

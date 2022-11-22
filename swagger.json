@@ -1,0 +1,14 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API PdCidadão",
+    "description": "Documentação API rest do PdCidadão",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://desenvolvimento.prodataweb.inf.br:8008/sigAparecida",
+      "description": "API de test"
+    }
+  ]
+}
