@@ -12,7 +12,7 @@ const app = express();
 const route = Router();
 
 var options = {
-  customCssUrl: "./swagger-ui-custom.css",
+  customCssUrl: `${__dirname}/swagger-ui-custom.css`,
 };
 
 const swaggerDocs = JSON.parse(fs.readFileSync(`${__dirname}/swagger.json`));
