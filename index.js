@@ -12,8 +12,10 @@ const app = express();
 const route = Router();
 
 const swaggerDocs = JSON.parse(fs.readFileSync(`${__dirname}/swagger.json`));
-app.use("/api", swaggerUI.serve);
-route.get("/api", swaggerUI.setup(swaggerDocs));
+app.use("/api", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
+route.get("/api", (request, response) => {
+  response.setHeader("Content-Type", "application/json");
+});
 
 route.get("/", (request, response) => {
   return response.json({
