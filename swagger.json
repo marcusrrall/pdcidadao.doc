@@ -10,5 +10,6 @@
       "url": "https://desenvolvimento.prodataweb.inf.br:8008/sigAparecida",
       "description": "API de test"
     }
-  ]
+  ],
+  "basePath": "/"
 }

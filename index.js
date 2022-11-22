@@ -13,15 +13,10 @@ const route = Router();
 
 app.use(route);
 
-const options = { customCssUrl: `./public/swagger-ui-custom.css` };
+const options = { customCssUrl: `public/swagger-ui-custom.css` };
 
 const swaggerDocs = JSON.parse(fs.readFileSync(`${__dirname}/swagger.json`));
-app.use(
-  "/",
-  express.static("node_modules/swagger-ui-dist/", { index: false }),
-  swaggerUI.serve,
-  swaggerUI.setup(swaggerDocs, options)
-);
+app.use("/", swaggerUI.serve, swaggerUI.setup(swaggerDocs, options));
 // route.use(
 //   "/",
 //   function (req, res, next) {
