@@ -11,23 +11,12 @@ const __dirname = dirname(__filename);
 const app = express();
 const route = Router();
 
-var options = {};
+var options = {
+  customCssUrl: "./swagger-ui-custom.css",
+};
 
 const swaggerDocs = JSON.parse(fs.readFileSync(`${__dirname}/swagger.json`));
-app.use("/api", swaggerUI.serve);
-route.get(
-  "/api",
-  (request, response, next) => {
-    response.setHeader("Content-Type", "text/html; charset=utf-8");
-    request.swaggerDoc = swaggerDocs;
-    next();
-  },
-  swaggerUI.serveFiles(swaggerDocs, options),
-  swaggerUI.setup()
-);
-// route.get("/api", (request, response) => {
-//   next();
-// });
+app.use("/api", swaggerUI.serve, swaggerUI.setup(swaggerDocs, options));
 
 route.get("/", (request, response) => {
   return response.json({
