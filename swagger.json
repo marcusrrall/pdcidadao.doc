@@ -9,19 +9,81 @@
     {
       "url": "https://desenvolvimento.prodataweb.inf.br:8008/sigAparecida",
       "description": "API de test"
+    },
+    {
+      "url": "https://prodata.prodataweb.inf.br/sig",
+      "description": "Get token"
     }
   ],
   "basePath": "/",
   "paths": {
+    "/rest/loginController/validarLoginParaModuloPublico?modulo=servicosonline": {
+      "get": {
+        "summary": "Retorna dados do modulo publico - servicosonline",
+        "description": "Retorna o nome da empresa - servicosonline",
+        "tags": ["Prodata"],
+        "parameter": [{}],
+        "response": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
+    },
     "/rest/paramController/getNomeEmpresa": {
       "get": {
         "summary": "Nome da empresa",
         "description": "Retorna o nome da empresa",
         "tags": ["Core"],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "scheme": {}
+        "parameter": [{}],
+        "response": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/paramController/getDadosDoAplicativoDaEmpresa": {
+      "get": {
+        "summary": "Retorna os dados da prefeitura",
+        "description": "",
+        "tags": ["Core"],
+        "parameter": [{}],
+        "response": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/transparenciaAjudaSicController/getConfiguracoesMobile": {
+      "get": {
+        "summary": "Retorna os codigos Pre Definidos De Assuntos",
+        "description": "",
+        "tags": ["Core"],
+        "parameter": [{}],
+        "response": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
             }
           }
         }
@@ -29,7 +91,7 @@
     },
     "/rest/assuntoController/pesquisarMobile": {
       "post": {
-        "summary": "Carrega os dados Esic",
+        "summary": "Retorna Assuntos",
         "description": "",
         "tags": ["Core"],
         "requestBody": {
@@ -37,6 +99,188 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/PesquisarMobile"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/servicosCidadaoUsuarioController/validarLogin": {
+      "post": {
+        "summary": "Login do usuário",
+        "description": "",
+        "tags": ["Auth"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/servicosCidadaoSolicitacoesController/salvarUsuario": {
+      "post": {
+        "summary": "Regitrar novo usuário",
+        "description": "",
+        "tags": ["Auth"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/registerUser"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/solicitacaoOuvidoriaController/getListaDeSolicitacoesMobile": {
+      "post": {
+        "summary": "Pesquisar por solicitação",
+        "description": "",
+        "tags": ["Portal do Cidadão"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dataSearchSolicitacao"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/transparenciaAjudaSicController/salvarSolicitacaoMobile": {
+      "post": {
+        "summary": "Criar uma nova solicitação",
+        "description": "",
+        "tags": ["Portal do Cidadão"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dataCreateSolicitacao"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/transparenciaAjudaSicController/salvarVideoAnexoSolicitacaoMobile": {
+      "post": {
+        "summary": "Salvar video na solicitação",
+        "description": "",
+        "tags": ["Portal do Cidadão"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        }
+      }
+    },
+    "/rest/mobileController/getBairros": {
+      "post": {
+        "summary": "Buscar por bairro",
+        "description": "",
+        "tags": ["Endereços"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        }
+      }
+    },
+    "/rest/mobileController/getLogradouros": {
+      "post": {
+        "summary": "Buscar por Logradouro",
+        "description": "",
+        "tags": ["Endereços"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        }
+      }
+    },
+    "/rest/feiraFilaBancaCcpPontoController/salvarRegistro": {
+      "post": {
+        "summary": "Registra o ponto do feirante",
+        "description": "",
+        "tags": ["Feirante"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        }
+      }
+    },
+    "/rest/servicoContribuinteController/getDebitosDoContribuinte": {
+      "post": {
+        "summary": "Consulta os débitos do contribuintes",
+        "description": "",
+        "tags": ["Impostos e taxas"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dataSearchDebitos"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/pd-cidadao-relatorio/imprimir": {
+      "post": {
+        "summary": "Retorna o boleto do Duam",
+        "description": "",
+        "tags": ["Impostos e taxas"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/imprimirDuam"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/servicoContribuinteController/atualizaDividaContribuinte": {
+      "post": {
+        "summary": "Atualiza as dividas do contribuinte",
+        "description": "",
+        "tags": ["Impostos e taxas"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        }
+      }
+    },
+    "/rest/servicoContribuinteController/pesquisarDebitos": {
+      "post": {
+        "summary": "Retorna todas os débitos do contribuinte",
+        "description": "",
+        "tags": ["Impostos e taxas"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dataCCP"
               }
             }
           }
@@ -50,10 +294,102 @@
         "type": "object",
         "properties": {
           "tabela": { "type": "object" },
-          "solicita_s_n": { "type": "string" },
+          "is_servicos_online": { "type": "string" },
           "limitarPesquisa": { "type": "boolean" },
           "isPesquisaMobile": { "type": "boolean" },
           "isApenasAtivo": { "type": "boolean" }
+        }
+      },
+      "registerUser": {
+        "type": "object",
+        "properties": {
+          "foto": { "type": "string" },
+          "cpf_cnpj": { "type": "string" },
+          "nome_solicitante": { "type": "string" },
+          "senha": { "type": "string" },
+          "telefone": { "type": "string" },
+          "email": { "type": "string" },
+          "data_nascimento": { "type": "string" },
+          "cidade": { "type": "string" },
+          "bairro": { "type": "string" },
+          "logradouro": { "type": "string" },
+          "tipo_acesso_usuario": { "type": "number" }
+        }
+      },
+      "login": {
+        "type": "object",
+        "properties": {
+          "cpfCnpj": { "type": "string" },
+          "senha": { "type": "string" }
+        }
+      },
+      "dataSearchSolicitacao": {
+        "type": "object",
+        "properties": {
+          "cd_solicitacao": { "type": "number" },
+          "nr_cpf": { "type": "string" },
+          "isMobile": { "type": "boolean" },
+          "id_usuario_esic": null,
+          "tela": { "type": "string" }
+        }
+      },
+      "dataCreateSolicitacao": {
+        "type": "object",
+        "properties": {
+          "tipo": { "type": "string" },
+          "cd_assunto": { "type": "number" },
+          "cd_subassunto": { "type": "number" },
+          "observacao": { "type": "string" },
+          "cpf": { "type": "string" },
+          "foto1": { "type": "string" },
+          "foto2": { "type": "string" },
+          "foto3": { "type": "string" },
+          "foto4": { "type": "string" },
+          "foto5": { "type": "string" },
+          "latitude": { "type": "number" },
+          "longitude": { "type": "number" },
+          "nome": { "type": "string" },
+          "nomeMae": { "type": "string" },
+          "dataNascimento": { "type": "string" },
+          "sexo": { "type": "string" },
+          "celular": { "type": "string" },
+          "email": { "type": "string" },
+          "cd_bairro": { "type": "number" },
+          "cd_logra": { "type": "number" },
+          "quadra": { "type": "string" },
+          "lote": { "type": "string" },
+          "complemento": { "type": "string" }
+        }
+      },
+      "dataSearchDebitos": {
+        "type": "object",
+        "properties": {
+          "tela": { "type": "string" },
+          "cnpj": { "type": "string" },
+          "cpf": { "type": "string" },
+          "inscricao": { "type": "string" },
+          "ccp": { "type": "string" },
+          "cci": { "type": "string" },
+          "informarDuamEmDividaAtiva": { "type": "boolean" },
+          "tokenMobile": { "type": "string" }
+        }
+      },
+      "imprimirDuam": {
+        "type": "object",
+        "properties": {
+          "$identificacaoRelatorio": { "type": "string" },
+          "ccp": { "type": "number" },
+          "dataPagamento": { "type": "string" },
+          "duam": { "type": "number" },
+          "nomeEmpresa": { "type": "string" },
+          "parcela": { "type": "number" },
+          "siteEmpresa": { "type": "string" }
+        }
+      },
+      "dataCCP": {
+        "type": "object",
+        "properties": {
+          "ccp": { "type": "number" }
         }
       }
     }
