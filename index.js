@@ -3,7 +3,7 @@ import { Router } from "express";
 import swaggerUI from "swagger-ui-express";
 import fs from "fs";
 
-const swaggerDocs = JSON.parse(fs.readFileSync(`swagger.json`));
+const swaggerDocs = JSON.parse(fs.readFileSync(`${__dirname}swagger.json`));
 
 const app = express();
 
