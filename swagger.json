@@ -12,23 +12,28 @@
     },
     {
       "url": "https://prodata.prodataweb.inf.br/sig",
-      "description": "Get token"
+      "description": "API para pegar alguns dados de configuração"
     }
   ],
   "basePath": "/",
   "paths": {
     "/rest/loginController/validarLoginParaModuloPublico?modulo=servicosonline": {
       "get": {
-        "summary": "Retorna dados do modulo publico - servicosonline",
+        "summary": "Retorna dados do modulo público - servicosonline",
         "description": "Retorna o nome da empresa - servicosonline",
         "tags": ["Prodata"],
         "parameter": [{}],
-        "response": {
+        "responses": {
           "200": {
-            "description": "OK",
+            "description": "A list of pets.",
             "content": {
               "application/json": {
-                "schema": { "type": "object" }
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/resultModuloPublico"
+                  }
+                }
               }
             }
           }
@@ -37,11 +42,11 @@
     },
     "/rest/paramController/getNomeEmpresa": {
       "get": {
-        "summary": "Nome da empresa",
-        "description": "Retorna o nome da empresa",
+        "summary": "Retorna o nome da prefeitura",
+        "description": "Retorna o nome da prefeitura",
         "tags": ["Core"],
         "parameter": [{}],
-        "response": {
+        "responses": {
           "200": {
             "description": "OK",
             "content": {
@@ -55,11 +60,11 @@
     },
     "/rest/paramController/getDadosDoAplicativoDaEmpresa": {
       "get": {
-        "summary": "Retorna os dados da prefeitura",
+        "summary": "Retorna os dados relaciodada a configuração do app",
         "description": "",
         "tags": ["Core"],
         "parameter": [{}],
-        "response": {
+        "responses": {
           "200": {
             "description": "OK",
             "content": {
@@ -73,11 +78,11 @@
     },
     "/rest/transparenciaAjudaSicController/getConfiguracoesMobile": {
       "get": {
-        "summary": "Retorna os codigos Pre Definidos De Assuntos",
+        "summary": "Retorna os codigos pré-definidos de assuntos",
         "description": "",
         "tags": ["Core"],
         "parameter": [{}],
-        "response": {
+        "responses": {
           "200": {
             "description": "OK",
             "content": {
@@ -99,6 +104,27 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/PesquisarMobile"
+              },
+              "examples": {
+                "data": {
+                  "value": {
+                    "tabela": {},
+                    "is_servicos_online": "S",
+                    "limitarPesquisa": false,
+                    "isPesquisaMobile": true,
+                    "isApenasAtivo": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
               }
             }
           }
@@ -118,6 +144,16 @@
               }
             }
           }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
         }
       }
     },
@@ -131,6 +167,16 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/registerUser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
               }
             }
           }
@@ -150,6 +196,16 @@
               }
             }
           }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
         }
       }
     },
@@ -163,6 +219,16 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/dataCreateSolicitacao"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
               }
             }
           }
@@ -194,6 +260,16 @@
               "schema": {}
             }
           }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
         }
       }
     },
@@ -208,6 +284,42 @@
               "schema": {}
             }
           }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/servicosCidadaoOnlineTelaProcessoDigitalController/consultarCep": {
+      "post": {
+        "summary": "Buscar o endereço por CEP",
+        "description": "",
+        "tags": ["Endereços"],
+        "parameters": [
+          {
+            "name": "cep",
+            "in": "query",
+            "description": "CEP",
+            "require": true
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
         }
       }
     },
@@ -219,7 +331,19 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {}
+              "schema": {
+                "$ref": "#/components/schemas/dataPontoFeirante"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
             }
           }
         }
@@ -254,6 +378,16 @@
               }
             }
           }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
         }
       }
     },
@@ -262,10 +396,26 @@
         "summary": "Atualiza as dividas do contribuinte",
         "description": "",
         "tags": ["Impostos e taxas"],
+        "parameters": [
+          {
+            "name": "ccp",
+            "in": "query",
+            "description": "Codigo do contribuinte",
+            "require": true
+          }
+        ],
         "requestBody": {
           "content": {
-            "application/json": {
-              "schema": {}
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
             }
           }
         }
@@ -281,6 +431,16 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/dataCCP"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
               }
             }
           }
@@ -390,6 +550,61 @@
         "type": "object",
         "properties": {
           "ccp": { "type": "number" }
+        }
+      },
+      "dataPontoFeirante": {
+        "type": "object",
+        "properties": {
+          "feira_fila_banca_ccp_id": { "type": "number" },
+          "longitude": { "type": "number" },
+          "latitude": { "type": "number" },
+          "codigo_celular": { "type": "string" }
+        }
+      },
+      "resultModuloPublico": {
+        "type": "object",
+        "properties": {
+          "codigoUsuario": { "type": "number" },
+          "tipoUsuario": { "type": "string" },
+          "login": { "type": "string" },
+          "orgaoProtocolo": { "type": "string" },
+          "origemProtocolo": { "type": "string" },
+          "cpfNfe": { "type": "string" },
+          "ccp": { "type": "string" },
+          "ccpEmpresaPadrao": { "type": "string" },
+          "cnpjEmpresaPadrao": { "type": "string" },
+          "email": { "type": "string" },
+          "cidade": { "type": "string" },
+          "departamentoPesquisa": { "type": "string" },
+          "listaDePermissoes": { "type": "string" },
+          "listaDeViewsDoPrograma": { "type": "string" },
+          "permissaoHabilitada": { "type": "boolean" },
+          "isSetorPrivado": { "type": "boolean" },
+          "isTocantins": { "type": "boolean" },
+          "token": { "type": "string" },
+          "usuarioMaster": { "type": "boolean" },
+          "codigoCidade": { "type": "number" },
+          "codigoGestaoPrefeitura": { "type": "number" },
+          "siglaEstado": { "type": "string" },
+          "nomeEmpresa": { "type": "string" },
+          "isProdata": { "type": "boolean" },
+          "is_senha_recuperada_email": { "type": "string" },
+          "dataSenhaExpirada": { "type": "boolean" },
+          "inscricaoMunicipalPadrao": { "type": "string" },
+          "cgc_empresa": { "type": "string" },
+          "listaDePermissoesDosModulos": { "type": "string" },
+          "telasInativadas": { "type": "string" },
+          "possuiMensagemNaoLida": { "type": "boolean" },
+          "ccp_empresa_ranfs": { "type": "string" },
+          "ccp_contribuinte_ranfs": { "type": "string" },
+          "utilizarChat": { "type": "string" },
+          "portaChat": { "type": "string" },
+          "portaSocket": { "type": "string" },
+          "utilizarSocket": { "type": "string" },
+          "tempo_expiracao_sessao_usuario_minutos": { "type": "string" },
+          "somente_supervisor_acessa_auditora": { "type": "string" },
+          "ds_matricula": { "type": "string" },
+          "visualizaDespachoSigiloso": { "type": "string" }
         }
       }
     }
