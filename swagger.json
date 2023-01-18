@@ -446,6 +446,172 @@
           }
         }
       }
+    },
+    "/rest/servicosCidadaoOnlineTelaConsultaDebitosController/pesquisar": {
+      "post": {
+        "summary": "Retorna todas os débitos do contribuinte",
+        "description": "",
+        "tags": ["Debitos"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/searchDebitos"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/servicoContribuinteController/getInscricoesDoContribuinte": {
+      "post": {
+        "summary": "Retorna a inscrição do Contribuinte",
+        "description": "",
+        "tags": ["Debitos"],
+        "parameters": [
+          {
+            "name": "ccp",
+            "in": "query",
+            "description": "Codigo do contribuinte",
+            "require": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/servicosCidadaoOnlineController/getListaBotoesMobile": {
+      "post": {
+        "summary": "Retorna todos os serviços cadastrados para solicitações dinâmicas",
+        "description": "",
+        "tags": ["Solicitações Dinâmicas"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/servicosCidadaoConfiguracaoAlvaraConstrucaoController/getCamposMobile": {
+      "post": {
+        "summary": "Retorna a campos cadastrados para cada solicitações dinâmicas",
+        "description": "",
+        "tags": ["Solicitações Dinâmicas"],
+        "parameters": [
+          {
+            "name": "idConfiguracao",
+            "in": "query",
+            "description": "Codigo do serviço",
+            "require": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/servicosCidadaoSolicitacoesController/salvarSolicitacaoMobile": {
+      "post": {
+        "summary": "Salva a solicitações dinâmicas",
+        "description": "",
+        "tags": ["Solicitações Dinâmicas"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/dataSolicitacaoDinamicas"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/servicosCidadaoSolicitacoesController/salvarVideoSolicitacaoMobile": {
+      "post": {
+        "summary": "Salva o video na solicitações dinâmicas",
+        "description": "",
+        "tags": ["Solicitações Dinâmicas"],
+        "parameters": [
+          {
+            "name": "protocolo",
+            "in": "query",
+            "description": "Codigo do protocolo cadastrado para a solicitação",
+            "require": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -605,6 +771,36 @@
           "somente_supervisor_acessa_auditora": { "type": "string" },
           "ds_matricula": { "type": "string" },
           "visualizaDespachoSigiloso": { "type": "string" }
+        }
+      },
+      "searchDebitos": {
+        "type": "object",
+        "properties": {
+          "tipo_certidao": { "type": "number" },
+          "tipo": { "type": "number" },
+          "servico_cidadao_usuario_id": { "type": "number" },
+          "somente_ativos": { "type": "boolean" },
+          "tabela": { "type": "object" },
+          "isConsultaText": { "type": "boolean" },
+          "nomeTelaAtualAutocomplete": { "type": "string" },
+          "descricaoModuloAtual": { "type": "string" }
+        }
+      },
+      "dataSolicitacaoDinamicas": {
+        "type": "object",
+        "properties": {
+          "idUsuario": { "type": "number" },
+          "idConfig": { "type": "number" },
+          "tipo": { "type": "string" },
+          "observacao": { "type": "string" },
+          "latitude": { "type": "number" },
+          "longitude": { "type": "number" },
+          "bairro": { "type": "number" },
+          "logradouro": { "type": "string" },
+          "quadra": { "type": "string" },
+          "lote": { "type": "string" },
+          "complemento": { "type": "string" },
+          "anexos": { "type": "array" }
         }
       }
     }
