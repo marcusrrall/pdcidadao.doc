@@ -612,6 +612,160 @@
           }
         }
       }
+    },
+    "/rest/servicosCidadaoCamposDinamicosProcessoDigitalController/getCamposConfiguracaoMobile": {
+      "post": {
+        "summary": "Pegar os campos do formulários do Processos digitais",
+        "description": "",
+        "tags": ["Processos Dinâmicos"],
+        "parameters": [
+          {
+            "name": "idConfiguracao",
+            "in": "query",
+            "description": "Codigo do servicos_cidadao_configuracao cadastrado para o processo",
+            "require": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/servicosCidadaoOnlineController/getListaBotoesPorPermissaoMobile": {
+      "post": {
+        "summary": "Retorna todos os serviços do Processos digitais",
+        "description": "",
+        "tags": ["Processos Dinâmicos"],
+        "parameters": [
+          {
+            "name": "cdUsuario",
+            "in": "query",
+            "description": "Código do usuário logado",
+            "require": true
+          },
+          {
+            "name": "tipoPermissao",
+            "in": "query",
+            "description": "Código  da permissão do usuário logado",
+            "require": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/servicosCidadaoSolicitacoesController/salvarSolicitacaoProcessoDigitalMobile": {
+      "post": {
+        "summary": "Salva o processo digital",
+        "description": "",
+        "tags": ["Processos Dinâmicos"],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/servicosCidadaoSolicitacoesController/enviarParaAnaliseMobileProcessoDigital": {
+      "post": {
+        "summary": "Envia o processo digital para análise",
+        "description": "",
+        "tags": ["Processos Dinâmicos"],
+        "parameters": [
+          {
+            "name": "idSolicitacao",
+            "in": "query",
+            "description": "Código do processo",
+            "require": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rest/servicosCidadaoOnlineController/consultarSolicitacoesMobile": {
+      "post": {
+        "summary": "Lista os processos digital",
+        "description": "",
+        "tags": ["Processos Dinâmicos"],
+        "parameters": [
+          {
+            "name": "usuario",
+            "in": "query",
+            "description": "Código do usuário logado",
+            "require": true
+          },
+          {
+            "name": "tipoSolicitacao",
+            "in": "query",
+            "description": "tipo da consulta: PROCESSODIGITAL",
+            "require": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {}
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
